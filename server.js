@@ -51,7 +51,6 @@ const CheckWaitTimes = () => {
   };
 
 
-
 setInterval(() => {
     const currentTime = Number(new Date().toLocaleTimeString([], {  hour: "2-digit", timeZone: 'Europe/Paris', hour12: false }));
     if (currentTime >= startTime && currentTime < endTime) {

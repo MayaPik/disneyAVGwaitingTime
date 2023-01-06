@@ -9,13 +9,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "body-parser": "^1.20.1",
     "knex": "^2.3.0",
-    "pg": "^8.8.0"
+    "pg": "^8.8.0",
+    "themeparks": "^5.1.53"
   },
   "engines": {
     "node": "12.x"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
