@@ -1,6 +1,5 @@
 const Themeparks = require("themeparks");
 const express = require('express');
-const { date } = require("faker/lib/locales/az");
 const app = express();
 
 const db = require('knex')({
