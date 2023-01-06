@@ -59,6 +59,6 @@ setInterval(() => {
     }
   }, 1000); // check every 1 second
   
-app.listen(process.env.POTT || 5001)
+app.listen(process.env.PORT || 5001)
 
 // you can also call GetOpeningTimes on themeparks objects to get park opening hours
