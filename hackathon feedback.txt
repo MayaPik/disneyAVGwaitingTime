@@ -1,0 +1,6 @@
+Disneyland Average Wait Time api.
+Very refreshing to see a project purely back end. I think its great and useful for giving a general idea on average wait times!
+Utilised an existing api, env file and great work with the database querying!
+It is a lot of information to store thats true, but maybe if you could add auto deletion after a few days of part of the old information that could work. 
+Or maybe just use the same days information which updates every 5 minutes and then you'll have a daily average.
+Either way, great job- curious to see your front end skills too !
