@@ -101,16 +101,10 @@ app.get("/avg", (req, res) => {
           .orderBy("hour", "asc")
           .then((results) => {
             results.forEach((row) => {
-              if (nonWorking.includes(Number(id))) {
-                data[(row.id, row.name)] = data[(row.id, row.name)] || {};
-              } else {
-                data[(row.id, row.name)] = data[(row.id, row.name)] || {};
-                data[(row.id, row.name)][row.hour] =
-                  Math.round(Number(row.avg_waiting_time)) || null;
-              }
+              data[(row.id, row.name)] = data[(row.id, row.name)] || {};
+              data[(row.id, row.name)][row.hour] =
+                Math.round(Number(row.avg_waiting_time)) || null;
             });
-
-            // send the response after all queries have finished
             if (Object.keys(data).length === idValues.length) {
               res.send(data);
             }
