@@ -101,14 +101,8 @@ app.get("/avg", (req, res) => {
           .orderBy("hour", "asc")
           .then((results) => {
             results.forEach((row) => {
-              const nonWorking = [
-                1, 2, 4, 5, 9, 12, 15, 18, 21, 22, 26, 27, 29, 32, 35, 38, 39,
-                40, 41,
-              ];
               if (nonWorking.includes(Number(id))) {
                 data[(row.id, row.name)] = data[(row.id, row.name)] || {};
-                data[(row.id, row.name)] =
-                  "The ride is not operating / No queue / No data";
               } else {
                 data[(row.id, row.name)] = data[(row.id, row.name)] || {};
                 data[(row.id, row.name)][row.hour] =
@@ -126,30 +120,23 @@ app.get("/avg", (req, res) => {
 });
 
 app.get("/avg/:number", (req, res) => {
-  const nonWorking = [
-    1, 2, 4, 5, 9, 12, 15, 18, 21, 22, 26, 27, 29, 32, 35, 38, 39, 40, 41,
-  ];
   let data = {};
   let number = req.params.number;
-  if (nonWorking.includes(Number(number))) {
-    res.send("The ride is not operating / No queue / No data");
-  } else {
-    db.select("id", "hour", "name")
-      .avg("wait as avg_waiting_time")
-      .from("disneyapi")
-      .where({ id: number })
-      .groupBy("id", "hour", "name")
-      .orderBy("hour", "asc")
-      .then((results) => {
-        results.forEach((row) => {
-          data[(row.id, row.name)] = data[(row.id, row.name)] || {};
-          data[(row.id, row.name)][row.hour] = Math.round(
-            Number(row.avg_waiting_time)
-          );
-        });
-        res.json(data);
+  db.select("id", "hour", "name")
+    .avg("wait as avg_waiting_time")
+    .from("disneyapi")
+    .where({ id: number })
+    .groupBy("id", "hour", "name")
+    .orderBy("hour", "asc")
+    .then((results) => {
+      results.forEach((row) => {
+        data[(row.id, row.name)] = data[(row.id, row.name)] || {};
+        data[(row.id, row.name)][row.hour] = Math.round(
+          Number(row.avg_waiting_time)
+        );
       });
-  }
+      res.json(data);
+    });
 });
 
 app.listen(process.env.PORT);
